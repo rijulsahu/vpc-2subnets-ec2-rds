@@ -1,0 +1,31 @@
+# VPC Best Practices - Development Configuration (Cost Optimized)
+
+# AWS Region
+aws_region = "ap-south-1"
+
+# VPC Configuration
+vpc_cidr = "10.1.0.0/16"
+
+# Availability Zones
+availability_zones = []
+az_count           = 2
+
+# Subnet Configuration
+public_subnet_cidrs  = ["10.1.1.0/24", "10.1.2.0/24"]
+private_subnet_cidrs = ["10.1.11.0/24", "10.1.12.0/24"]
+
+# NAT Gateway Strategy - Single NAT for cost savings
+nat_gateway_strategy = "single"
+
+# Monitoring - Disabled to save costs
+enable_vpc_flow_logs     = false
+flow_logs_retention_days = 7
+
+# Security - Less restrictive for dev
+admin_cidr_blocks = ["0.0.0.0/0"]
+
+# Tagging
+project_name = "vpc-best-practices"
+environment  = "development"
+cost_center  = "engineering"
+owner        = "dev-team"

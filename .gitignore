@@ -1,0 +1,67 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files - these contain sensitive infrastructure state
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which may contain sensitive data
+*.tfvars
+*.tfvars.json
+
+# Keep example files for documentation
+!*.tfvars.example
+!dev.tfvars.example
+!terraform.tfvars.example
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Lock file (optional - some teams commit this, some don't)
+.terraform.lock.hcl
+*.lock.info
+
+# Test outputs and temporary files
+test_output/
+*.test
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python virtual environments (for testing)
+.venv/
+venv/
+env/
+
+# Logs
+*.log
+
+# SSH keys (never commit these!)
+*.pem
+*.key
+*.pub
+id_rsa*
+
+# Backup files
+*backup*
+*.bak

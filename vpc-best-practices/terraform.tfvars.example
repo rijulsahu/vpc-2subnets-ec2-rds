@@ -1,0 +1,34 @@
+# VPC Best Practices - Production Configuration Example
+# Copy this file to terraform.tfvars and customize for your deployment
+
+# AWS Region
+aws_region = "us-east-1"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Availability Zones (leave empty for automatic selection)
+# availability_zones = ["us-east-1a", "us-east-1b"]
+availability_zones = []
+az_count           = 2
+
+# Subnet Configuration
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.11.0/24", "10.0.12.0/24"]
+
+# NAT Gateway Strategy
+# Options: "per_az" (high availability) or "single" (cost optimized)
+nat_gateway_strategy = "per_az"
+
+# Monitoring
+enable_vpc_flow_logs      = true
+flow_logs_retention_days  = 7
+
+# Security
+admin_cidr_blocks = ["0.0.0.0/0"]  # CHANGE THIS: Restrict to your admin IP
+
+# Tagging
+project_name = "vpc-best-practices"
+environment  = "production"
+cost_center  = "engineering"
+owner        = "platform-team"
