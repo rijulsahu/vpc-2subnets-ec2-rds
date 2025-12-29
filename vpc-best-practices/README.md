@@ -868,7 +868,7 @@ Improvements and suggestions welcome! Please ensure all tests pass before submit
 
 ## Maintainers
 
-Infrastructure Team - [infrastructure-team@example.com](mailto:infrastructure-team@example.com)
+Maintained by [@rijulsahu](https://github.com/rijulsahu)
 
 ## Version History
 
