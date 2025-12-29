@@ -2,6 +2,17 @@
 """
 Test runner for VPC Best Practices property-based tests
 Runs all property tests and provides a summary
+
+NOTE: This script runs ONLY property-based tests, which validate
+      infrastructure configuration without creating AWS resources.
+      
+      Integration tests (which create real AWS resources and incur costs)
+      are excluded and should be run separately with explicit intent.
+      
+      To run integration tests:
+        uv run network_connectivity_integration_test.py
+        uv run ha_behavior_integration_test.py
+        uv run security_validation_integration_test.py
 """
 
 import os
@@ -41,11 +52,24 @@ def main():
     
     test_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # List of test files to run (in order)
+    # List of property-based test files to run (in order)
+    # Integration tests are EXCLUDED - they create real AWS resources and incur costs
+    # Integration tests must be run explicitly: network_connectivity_integration_test.py, etc.
     test_files = [
         'variable_validation_test.py',
         'vpc_cidr_configuration_test.py',
-        # More tests will be added as we implement them
+        'subnet_configuration_test.py',
+        'internet_gateway_test.py',
+        'nat_gateway_test.py',
+        'route_table_test.py',
+        'public_nacl_test.py',
+        'private_nacl_test.py',
+        'security_groups_test.py',
+        'flow_logs_test.py',
+        'ha_distribution_test.py',
+        'security_best_practices_test.py',
+        'code_organization_test.py',
+        'tagging_consistency_test.py',
     ]
     
     results = []
@@ -73,6 +97,15 @@ def main():
     
     print(f"\nOverall Results: {passed}/{total} test suites passed")
     print("=" * 80)
+    
+    if passed == total:
+        print("\n✓ All property-based tests passed!")
+        print("\nTo run integration tests (creates AWS resources, incurs costs):")
+        print("  uv run network_connectivity_integration_test.py")
+        print("  uv run ha_behavior_integration_test.py")
+        print("  uv run security_validation_integration_test.py")
+        print("\nOr run all integration tests:")
+        print("  uv run run_integration_tests.py")
     
     return passed == total
 

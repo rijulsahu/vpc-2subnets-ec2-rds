@@ -41,6 +41,9 @@ locals {
   # Calculate VPC name
   vpc_name = "${var.project_name}-vpc-${var.environment}"
 
+  # Common resource prefix for consistent naming
+  resource_prefix = "${var.project_name}-${var.environment}"
+
   # Generate subnet names dynamically
   public_subnet_names = [
     for idx, az in local.availability_zones :
