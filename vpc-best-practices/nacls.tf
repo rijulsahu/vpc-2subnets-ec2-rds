@@ -48,7 +48,7 @@ resource "aws_network_acl_rule" "public_inbound_ssh" {
   count = length(var.admin_cidr_blocks)
 
   network_acl_id = aws_network_acl.public.id
-  rule_number    = 120 + count.index
+  rule_number    = 120
   egress         = false
   protocol       = "tcp"
   rule_action    = "allow"
@@ -60,13 +60,25 @@ resource "aws_network_acl_rule" "public_inbound_ssh" {
 # Allow ephemeral ports for return traffic (responses to outbound requests)
 resource "aws_network_acl_rule" "public_inbound_ephemeral" {
   network_acl_id = aws_network_acl.public.id
-  rule_number    = 140
+  rule_number    = 130
   egress         = false
   protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
   from_port      = 1024
   to_port        = 65535
+}
+
+# Allow ICMP (ping) from private subnets for connectivity testing
+resource "aws_network_acl_rule" "public_inbound_icmp" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 140
+  egress         = false
+  protocol       = "icmp"
+  rule_action    = "allow"
+  cidr_block     = var.vpc_cidr
+  icmp_type      = -1
+  icmp_code      = -1
 }
 
 # Public NACL Outbound Rules
@@ -93,6 +105,30 @@ resource "aws_network_acl_rule" "public_outbound_https" {
   cidr_block     = "0.0.0.0/0"
   from_port      = 443
   to_port        = 443
+}
+
+# Allow SSH to private subnets (for bastion/jump host functionality)
+resource "aws_network_acl_rule" "public_outbound_ssh" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 120
+  egress         = true
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = var.vpc_cidr
+  from_port      = 22
+  to_port        = 22
+}
+
+# Allow ICMP (ping) to private subnets for connectivity testing
+resource "aws_network_acl_rule" "public_outbound_icmp" {
+  network_acl_id = aws_network_acl.public.id
+  rule_number    = 130
+  egress         = true
+  protocol       = "icmp"
+  rule_action    = "allow"
+  cidr_block     = var.vpc_cidr
+  icmp_type      = -1
+  icmp_code      = -1
 }
 
 # Allow ephemeral ports for responses to inbound requests
@@ -176,6 +212,18 @@ resource "aws_network_acl_rule" "private_outbound_https" {
   cidr_block     = "0.0.0.0/0"
   from_port      = 443
   to_port        = 443
+}
+
+# Allow HTTP to internet (for connectivity testing and redirects)
+resource "aws_network_acl_rule" "private_outbound_http" {
+  network_acl_id = aws_network_acl.private.id
+  rule_number    = 120
+  egress         = true
+  protocol       = "tcp"
+  rule_action    = "allow"
+  cidr_block     = "0.0.0.0/0"
+  from_port      = 80
+  to_port        = 80
 }
 
 # Private NACL Subnet Associations

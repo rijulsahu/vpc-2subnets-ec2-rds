@@ -137,12 +137,12 @@ python run_all_tests.py
 ```
 ┌────────────────────────────────────────────────────────┐
 │                     Custom VPC                         │
-│  ┌──────────────────────┐  ┌──────────────────────┐   │
-│  │  Public Subnet       │  │  Private Subnet      │   │
-│  │  - NAT Gateway       │  │  - EC2 Instances     │   │
-│  │  - Bastion Host      │  │  - RDS Database      │   │
-│  │  - Internet Gateway  │  │  - App Servers       │   │
-│  └──────────────────────┘  └──────────────────────┘   │
+│  ┌──────────────────────┐  ┌──────────────────────┐    │
+│  │  Public Subnet       │  │  Private Subnet      │    │
+│  │  - NAT Gateway       │  │  - EC2 Instances     │    │
+│  │  - Bastion Host      │  │  - RDS Database      │    │
+│  │  - Internet Gateway  │  │  - App Servers       │    │
+│  └──────────────────────┘  └──────────────────────┘    │
 └────────────────────────────────────────────────────────┘
 ```
 
