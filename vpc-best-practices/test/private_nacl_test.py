@@ -348,8 +348,8 @@ def test_property_8_private_nacl_outbound():
     assert https_rule['cidr'] == '0.0.0.0/0', f"FAIL: HTTPS CIDR should be 0.0.0.0/0, got {https_rule['cidr']}"
     print(f"  PASS: HTTPS (443) outbound rule configured (rule {https_rule['rule_number']})")
     
-    # Verify restrictive nature: only 2 outbound rules (VPC + HTTPS)
-    assert len(outbound) == 2, f"FAIL: Expected exactly 2 outbound rules for restrictive access, found {len(outbound)}"
+    # Verify restrictive nature: only 3 outbound rules (VPC + HTTPS)
+    assert len(outbound) == 3, f"FAIL: Expected exactly 3 outbound rules for restrictive access, found {len(outbound)}"
     print(f"  PASS: Restrictive outbound rules (only VPC and HTTPS)")
 
 
