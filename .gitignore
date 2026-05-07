@@ -43,6 +43,7 @@ __pycache__/
 # IDE and Editor files
 .idea/
 .vscode/
+.kiro/
 *.swp
 *.swo
 *~
