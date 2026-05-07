@@ -258,7 +258,7 @@ terraform state list
 Lead Data Engineer & Cloud Solutions Architect
 
 - Portfolio: [rijul.cloud](https://rijul.cloud)
-- LinkedIn: [linkedin.com/in/rijulsahu](https://linkedin.com/in/rijulsahu)
+- LinkedIn: [linkedin.com/in/rijulsahu](https://www.linkedin.com/in/rijul-sahu-242b59129)
 - Certifications: AWS Solutions Architect, Databricks Data Engineer Associate
 
 ## 📄 License
